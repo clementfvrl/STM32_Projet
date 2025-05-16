@@ -1,8 +1,8 @@
-# 📦 STM32 Motion Sensor Project - NUCLEO-L476RG / L152RE + IKS01A3 (LIS2DW12)
+# 📦 STM32_Projet - NUCLEO-L476RG / L152RE + IKS01A3 (LSM6DSO)
 
 ## 📋 Description
 
-Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LSM6DSO** (accéléromètre). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
+Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LSM6DSO** (gyroscope). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
 
 ---
 
@@ -20,9 +20,8 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
 
 ## 🧰 Stack logiciel
 
-- STM32CubeIDE `v1.18.1`
+- STM32CubeIDE `v1.x18.1`
 - HAL (STM32Cube HAL Drivers)
-- [X-CUBE-MEMS1](https://www.st.com/en/embedded-software/x-cube-mems1.html)
 
 ---
 
@@ -32,16 +31,49 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
    ```bash
    git clone https://github.com/clementfvrl/STM32_Projet.git
    cd STM32_Projet
+````
 
 2. **Ouvrir avec STM32CubeIDE**
-    Lancer STM32CubeIDE.
-    Importer le projet avec File > Open Projects from File System....
+
+   * Lancer STM32CubeIDE.
+   * Importer le projet avec `File > Open Projects from File System...`.
 
 3. **Configurer la carte**
-    Vérifie que la bonne carte cible est sélectionnée (L476RG ou L152RE).
-    Vérifie les pins I²C / SPI selon ta configuration matérielle.
+
+   * Vérifie que la bonne carte cible est sélectionnée (L476RG ou L152RE).
+   * Vérifie les pins I²C / SPI selon ta configuration matérielle.
 
 4. **Compiler et flasher**
-    Connecter la carte via USB.
-    Compiler avec Project > Build.
-    Flasher avec Run > Debug.
+
+   * Connecter la carte via USB.
+   * Compiler avec `Project > Build`.
+   * Flasher avec `Run > Debug`.
+
+---
+
+## 📁 Structure du projet
+
+```
+/Core/
+  └── Src/            # Fichiers source C
+  └── Inc/            # Fichiers d’en-tête
+/Drivers/
+  └── BSP/            # Drivers de la board
+  └── STM32L4xx_HAL/  # HAL STM32
+```
+
+---
+
+## ✅ À faire
+
+* [x] Configuration I2C/SPI
+* [x] Lecture LIS2DW12
+* [ ] Intégration du gyroscope LSM6DSO
+* [ ] Ajout de traitement de données
+* [ ] Communication UART/BLE
+
+---
+
+## 👨‍💻 Auteurs
+
+Projet développé par FAVAREL, PUTZ et BOMPUIS dans le cadre du Projet STM32 de l'ISEN Méditerranée.
