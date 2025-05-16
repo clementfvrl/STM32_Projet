@@ -34,3 +34,16 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
    ```bash
    git clone https://github.com/clementfvrl/STM32_Projet.git
    cd STM32_Projet
+
+2. **Ouvrir avec STM32CubeIDE**
+    Lancer STM32CubeIDE.
+    Importer le projet avec File > Open Projects from File System....
+
+3. **Configurer la carte**
+    Vérifie que la bonne carte cible est sélectionnée (L476RG ou L152RE).
+    Vérifie les pins I²C / SPI selon ta configuration matérielle.
+
+4. **Compiler et flasher**
+    Connecter la carte via USB.
+    Compiler avec Project > Build.
+    Flasher avec Run > Debug.
