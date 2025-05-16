@@ -2,7 +2,7 @@
 
 ## 📋 Description
 
-Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LIS2DW12** (accéléromètre). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
+Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LSM6DSO** (accéléromètre). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
 
 ---
 
@@ -14,7 +14,7 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
 | Microcontrôleur   | NUCLEO-L152RE     | Carte STM32 secondaire     |
 | Capteur           | IKS01A3           | Shield multi-capteurs      |
 | Accéléromètre     | LIS2DW12          | Accéléromètre 3 axes       |
-| Gyroscope         | LSM6DSO (si besoin) | Gyroscope + Accéléromètre |
+| Gyroscope         | LSM6DSO           | Gyroscope + Accéléromètre  |
 
 ---
 
