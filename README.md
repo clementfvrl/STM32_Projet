@@ -31,7 +31,6 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
    ```bash
    git clone https://github.com/clementfvrl/STM32_Projet.git
    cd STM32_Projet
-````
 
 2. **Ouvrir avec STM32CubeIDE**
 
