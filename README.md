@@ -4,8 +4,6 @@
 
 Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LIS2DW12** (accéléromètre). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
 
-> **⚠️ Note :** Le **LIS2DW12** est un accéléromètre 3 axes ultra-faible consommation. Pour exploiter des données de **gyroscope**, un autre capteur comme le **LSM6DSO** (présent sur le shield) devra être utilisé.
-
 ---
 
 ## 🛠 Matériel utilisé
