@@ -56,7 +56,7 @@
 #define ACCELEROMETER_ODR           LSM6DSO_XL_ODR_1667Hz   /* Should be between LSM6DSO_XL_ODR_12Hz5 and LSM6DSO_XL_ODR_6667Hz */
 #endif
 #ifndef ACCELEROMETER_FS
-#define ACCELEROMETER_FS            LSM6DSO_4g             /* Should be between LSM6DSO_2g and LSM6DSO_16g */
+#define ACCELEROMETER_FS            LSM6DSO_2g             /* Should be between LSM6DSO_2g and LSM6DSO_16g */
 #endif
 #else
 #ifndef GYROSCOPE_ODR
@@ -99,13 +99,12 @@ float neai_time = 0.0;
 static float neai_buffer[AXIS * SAMPLES] = {0.0};
 static float neai_output_buffer[CLASS_NUMBER] = {0.0};
 
-const char *id2class[CLASS_NUMBER + 2] = {
+const char *id2class[CLASS_NUMBER + 1] = {
 		"unknown",
-		"Mouvement brusque",
+		"Pas_bouger",
 		"Marche",
 		"Inclinaison brusque",
 		"Impact",
-		"Pas_bouger",
 };
 
 uint8_t fall_detected = 0;
@@ -189,8 +188,8 @@ int main(void)
 		}
 
 		printf("SafeGuard - Système de détection de chute activé\r\n");
-		printf("Classes disponibles: %s, %s, %s, %s, %s\r\n",
-				id2class[1], id2class[2], id2class[3], id2class[4], id2class[5]);
+		printf("Classes disponibles: %s, %s, %s, %s\r\n",
+				id2class[1], id2class[2], id2class[3], id2class[4]);
 	}
 	/* USER CODE END 2 */
 
@@ -448,8 +447,8 @@ static void check_fall_detection(void)
     }
 
     // Logique de détection de chute
-    float impact_prob = neai_output_buffer[3] * 100.0f;        // "Impact" = index 3 (4ème classe)
-    float inclinaison_prob = neai_output_buffer[2] * 100.0f;   // "Inclinaison brusque" = index 2 (3ème classe)
+    float impact_prob = neai_output_buffer[4] * 100.0f;        // "Impact" = index 3 (4ème classe)
+    float inclinaison_prob = neai_output_buffer[3] * 100.0f;   // "Inclinaison brusque" = index 4 (5ème classe)
 
     // Détection basée sur Impact fort OU Inclinaison brusque forte
     if (impact_prob > FALL_DETECTION_THRESHOLD_IMPACT ||

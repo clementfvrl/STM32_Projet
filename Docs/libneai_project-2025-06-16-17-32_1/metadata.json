@@ -1,0 +1,112 @@
+{
+    "algorithm_type": "classifier",
+    "class_names": [
+        "Pas_bouger",
+        "Marche",
+        "Inclinaison brusque",
+        "Impact"
+    ],
+    "commit": "bb711f54",
+    "compilation_date": "2025-06-16T16:02:59.145032",
+    "compilation_flags": {
+        "float_abi": "soft",
+        "fshort_enums": true,
+        "short_wchar": false
+    },
+    "compilation_str": "{'compilation_dict':{'request_type':'library','api':{'env':'PROD','version':'v3'},'version':{'web_api':{'env':'PROD','version':'v3'},'local_api':{'version':'2025.04.04.1','platform':'win64'},'studio':'5.0.2'},'compilation_flags':{'float_abi':'soft','short_wchar':false,'fshort_enums':true,'use_knowledge':false},'mcu':'cortex-m3_st_stm32l1_nucleo-l152re','sensor':'acc','request_origin':'manual','algorithm_type':'classifier','lib_version':'v2_bb711f5','info':{'progression':{'evals_done':200000,'optimization_progress':1.0,'elapsed_time':1152,'cpu_info':{'cpu_nb_cores':16,'cpu_nb_cores_for_optimization':12},'state':'finished'},'max_ram':80000,'max_flash':512000,'optimization_global_id':'b1ca0ab9525f57bfd041e49fbfcbe033','version':{'local_api':'2025.04.04.1','studio':'5.0.2'},'creation_date':'2025-06-16T15:43:23+00:00'},'class_names':'Pas_bouger,Marche,Inclinaison brusque,Impact','results':[{'result_id':60,'combination':[1,0,[6,26,23,7,25,24,13,15,11,9,4,10,5,18,22,21,20,14,8,19,16,0,2,1,3,17,12],27,0,47,128,4,6,3,5,1,140,1,3,4,0,4,0.0,0.0,1000000.0,0,0,0,0,1],'model':5,'performance':{'performance':{'score':0.9731,'precision':0.995,'precision_confidence_interval':[0.9204,1.0]},'memory_usage':{'estimated_ram':1681,'estimated_flash':18280,'estimated_flash_knowledge':null}},'learning_min_lines':null,'knowledge_dat':'eNq1Wwl4FEUWbiAcQpSIQUBiCIcrIES-JXIp0NOZ7hk5JLgIRJFDkPsSgkaFtUEJCQQ2HIYbQziMGBExIAmyDBEVUBB1P2ARYdQPdmVdZAU5lGNf1czreV3pmemZYH_f-6q7q-rVq3f-lfRI3hynJMWmSvzyypI02SFJHqArQA0VSUoBSgPKAJoLtAxoE1AZ0AEgL9A5oGtA1YHP7UDxQAlAzYEeAGoP1AXIAeQG6gM0AGgw0LNAE4CeB5oBNCtV0mcD5QDNh-eFQK_D_XJoV0NbAO0GaIugLYb2XaD3gT4A2gm0G97vhfZToM-AvoDnr6E9AnQc6CTQ9_DuDLRnof0Z6ALQZXj-DdobqZJHAp1Uc0qeGGhrQlsLqLZT0m93SnJdeHcntHcB1QdqAO8bQdsY3t8L4xKBkuC-ObQtoL0f2pYwpjW0bYCS4b4dvG8Pcx4C6gj3neF9F7jvCn3dgRzwzgnvVCAXPD8K1BP6e0PbB971hfYv8PwEjBsA9-lw_xS8fxqeh0I7DNoRQCOBRkPfWGjHw_sJMHYS0HPwbiq004BegPsXof9l6J8O7StOaagO72dCO8spFbwK9JpT8s4GyoL-bCDmM7Li8xld9rVJ8DxZ8T8DxTkk0zVUCdzr3SUpTzH3L_I_t1MC_NgV429TyHjKm_lmHOk75jDPozwz_O10f9uL7KEAaBnhy9bP9PcfdgTGd1ICexCvfOwjaxf77z3Af7Ow56GCjgr8z20Unw5jBX6yhV6z6bOwBuMzneqd3M9VAnPoxWK-FlmPXklKQIfYJ_v1lARytCD8qf4f8d8XYOuf6yY6pnbyyGb7smuyEpAPxzIf8jp8eWs04dNLkYJeVK5Z_vv1SiD_GbJQvcL9eYegNyIv6gJ9gul9q4UvrPHfLyD7HGgha24Qvmy9rCB2cwpzkhwV9Z_m94d-wppUxiVC3FFdol2ofQoV8xqxAm_2Pom8oz4VR-KvSJhH15AE23dSAvsfoVSMH3a1JPqIEXzjihBDkx3mXIbXICXAB9djeWiLhZ-2s9A3zWO4b6pPjIN4omsch324Lo1lzEGYg3E-7n8ZXd9CJyh3J8H_C0juTBDssUPIMwWCTs8LOswMkkMG-m1XLPA32V8O2JxeGG9UFrYXWlvSgtiyhX_dIkdFvtTGmy1sR69CCz_H-UZcKRbzBZ3RHE1zr1XuainUzvGKxd6kQA7bZMEDbY2-b-WPhu66m_tYnlwRxJ7t_HoVdVXgsNYbxvBAvz-z2sr895ijYv7eR95lCnijF4kHWfABUbdMJ1uFfhprJrnJO3eQPckkJlldYnLKFvb1iPzlQKxizs4guYzFXbYjuH8wmePJnouJTrB2LXNUtNMKwmOzYq6rW4XYF-OG5QGZ5swgOqN4jvka-hDWPCkIf8Q6WRb2ozE2VMjDMtFbrpAHqc_pgm9Qv_E6zLknTcBLaItVFjnbTeyQrVj7lS7ELfOVbAucsoXYnN0XCDrqJ9gsxiJHZSoV_Teb-EIaWUMW9kn9s1M4jCqb90V50n2usRhjso8VjiE4O1MJYD5d0Oci4b3bX39YHC5SrOOvoYAjZVIDr5B1E4QzgngxnjT_phBMnC9gESuMnWthwyKSE7ndhLXZGrECjqJnKPo-1wKfs7H8DCMHzjJi3Rb9IEvY43kh_pdZ7IOtyWoR9bUYxTqX6UEwSjsSy8UWNkgh-xPzt3g2wmdqS9lCx0MdFXNHniMwhp712L1Y2yQr7CdXrDfs3fkgcbiFxOpcK9_zvxtvwb9I2IssV4y3NkHqN5OX2ajAwg9ahItX_x4Yz-lhzl9W9YNi3E5B_MR0TpED5xyM3UwBY3kdwfEbxcWI12l-a0PwW55gU8T8tD6zc4OYH9sJ-TieYHZmJ4ZdmQ_pu_228PhzqsdP3X37YP3YJ_v75DD9zA9xTCj-2Kf7-ylvcZ4cpi-YzMiTySSOwXVZv1euKJfV2iJ_j4VexH2J_CPVq4fsI84RWk-V6QtlF69sb66o23Bz5TD-ZqU3ytuuz0j-PI38o9WTlR9y__KY7VQZ24TTobgXqic7eo4ktkL5tZVcofy6Mj5nJ64jtaOttaPQp-QJLZNuM0_YjcNblWci1Wk0_EPJH2l8BOMbbF_R5ig9TH3x2qhBXhu5Lhrd2Y3vaOzpiTCGQ-XvSuvWwm4e2cw_yREdtgglg8embaLBTWLc2s3RVvMrU1f0Pygf2Mmjuid63sFks5tP5Qj4B6u96B8ivhSxRrjYlaPAnqFkjMaHQ2EMxDYGto8Cc9nB2X8EBrXKQ6Ewth4FZpSjrF0VzkxR5slI_CBUPEt28V4lcFuofjs1J5yMdjB_NFhVjuKMGUn9ruxZJdr8K1eifssRnlsjwWd2-dj1vVuVq3m8WmARQxcCT6-YX0L0G74UhD9d2yNX9F2reeF4hpJJJrbxkDEFYg0Ns7bIX3KYfVO22Jcu8I9Ur7iGiA9D6UmPok8OIr_4N4pQNrXSrW7TrnoQTBKON-o_FG_DFv4xcoQ-GsoPC0je9sqVt004HYp7kSzqph372o0tPUi8VvjbVRi_jiQX2OVtJ271KPdFsUyk-pSj2LMeJA-Fi8NblWci1Wmk_IPVhkjyv26Db6h9RZuj5DBrm3BvFGOi1d2t8Mdgeg1V2-zUXopT5Cjn0z0XkH78WzX_n6TDfuxEKoOVDsL5Vzjbiv5HZce9hKtlVv4rR1FX7OSLaPOBld_fKt8MJRu1uV2fCMWf_q_KqLse81gRp4j1Wa8Eto1Uxmh82CrWrPap-9eyg49EPegR4OxoMagcws8lhz2MrQexo1xJG4bLDXGOyp3LwvmBV7Zvg0hxkV3cFq5W2605djBEKPtFg1UjyUXR1O9ozyqVzb-h5ts5V9g9t9qpM3oEfMLhODv-X4lcnT6Tf4tyqKlT419X_mO3eurbHO2OGz-4LumNXWVn3jC-j1laPtT9TdOmqfg8uvSQtny1x-jXGqe5p3db7GT3T5fexfmlpP_G-5svq8afz-99W-27pr2b3T_ZtURBvtX2_dUpN_pRRV4XT9bk39D8b891Fcd4--dx3q37XeXtuNgi3vdJ8of8mclcJy1brXd9jfH9zeh1C9WYUXP52jGFQ3hbHu9xnozzfZt08o0XXMaXQE3Wc7m2LjjN508_M8dYu23icL7viZuWqDkrPQ6qk9har6r0a5_Sq_15_4Uew9RBB_NdWy69w_u7DrnO1-9cdkwT9Vr7ieed-Lxt-06NrsH4VE99W8Nn5MP3XFI7FeewFnW75st5Wr5rOe-7_nENF-3rn56ljXn3V77ehI9L-byk_irXU-Jjsa7qudVTcbz8zB3GWl8kN-T3iZOucdnqlO_g-5rcOcbQMZtTfuEVvrf-93Uz5mbf7MTHyj_57DlYk3j7fM2FqicrV33skxyt58iG6t8_WmXsG-3auVq2G3nHHvPJc_tHUw3eHZr55Ljc8Ss-d_6ABMNuU5dv5Pd7hj_jHtB1r9rsx978ueql9obNUF7URa2Ue91s_MXYcdquAef492gPNJtu8Jma3pTL9dN7PyjoE8k9bzhwTeTb81eviW954yq8r1HeHrXtg9O4jpvWasZtU3RS5X3flc7n8bFhV3u-RsYds1VR_02z1jmLU3O0CXMU03dmY7fXMnw5OXGFKe6oLgtecvK1F7yuc97la8a4W426xN_1mvEan9etyjaVysXWxlhm75gPG18Ezo5zYQ55bGKhIRPjW6PJImPchosbuAyvJJzk7beeLHXld6v43Lo9fbZje8_YV2rEwtnOMzTUYWaPWanUN_KGTOR9ZfU_8fnH3fW4fJ51qikWrjf_XD2SnMP7WE5j7bTUOWrtlnfwPWZpquHv6C_sqjG1kSF730Hn-PwHExq4qD5Zzrh0bSKfnzKvi4r5JWNKqov1PTLv1VS6bqOWuspsx78gX-H7rdmO4y5u86zOeXz-Gmk17984yPetJdcJ8YNms8fyfrQj0yMb0-2uQ046n-XOU2fqGzp7suZwd41TD5nyDMYy7qnzoWc1zKX868cn5vDxvZfcbcohJ98uU9n8on8tNeXCkuTTqZS_3mSmsR7Oxdqwftv3Doypqud1be2nS4yx8a4WlrbseuaExvj-aftKh8gXfYXFFM2fX339u1FzcPx_SjTOH3MzH9c3w-dr_rh6clMV_nx4UakxP-m-Vi6qM3z_S14nw1fKP1rqPD3trQpj0G7supbi0Tb2LTXpTl75s7F_lgs_XF9dEXmU9azDebQZ4XJiLRHjG3U3ZXi6yVcL697jOrOnkSknYXxvSujF9Yp-bvjL3K-cNMeMS6jG-5fc48_fm5fzXMRq69jJ96lYt-m63pPDtQUb97upPyHeYGPYfCY3kynthR-D6ra4_wgV8zH2sfm33ZCNvIe1AmOS6bXOuCWmPUze71sDdbB37RT104UztV0Z8zWmz35dY021mdYxjOW9fRINP-938Gm14_osDXMZy7mFMQEMwvQ4Jes9J9VLr5mv8flM9ne8DVSMuf35El8LMQzKyGKk3Xs9nCjTgRxfnmW4ibUlj7RNpdhDjJvCH45qnx2-6vxlTz4fv-SKy4hn1Bmr52d_DvxO7KVj9VTER8M-eIrzO7TX9x365ra9NdFGTC_OCQF8iH0Zn50w9Ddw_O8Omg83XP7NyTASy5W1H2rgy3efJ6mIJ_kvXA72VJm_UN9Av-HjCwbxFmsPq4-9qpQZaxad2Mzvmz9QV0G-6_eN8eXIWusNHKTkxZnqC_oVrasHyi9po7OPajtGfquKfp7cYYKhk4ZLFzgHZ7dINX2sv_lN3n9ihs-_7m120cAUjj71VRofDMeirH_ueMiQEWObXcyeiAvRhph3F5X1M8VxhtLBhFEZ_xcXtKpgq5b_LVcR228peUfbsb-5Ko7Zs-42Qx-Y3xF_Mt9kOAv1wnAhYr5e3qsaxa-_lL9sOnt8s6KV2rrqQReLw1H_XGzUPhp_uw_-zu8_X3tIpfGRtWI3xwPMj9i6WPfQR0QdMcwWn3DV-N1Bu7Mz1X_f9NXNwnNuwy4Mi0y7MI_Lsj__rLFv9FXEV2zf8W99yddELDhy1gknzbHfz3hYY_WG5tjX5Xj3gazefFyn9q01ETtifme2ZmMX30zkefrmqb8FcBbgjedK5mn0DIM2ofHI9pgSe5Hv4e7juW6KMfCcxfT9ZYeGrssvjzJ8TTwH0FqHPsT3eOi04StY41ksH05PN2SlukD7IdZFPR7fudPkq3hWwvMek-etBwv5HIxZhjXZOezx7W-q1O-nflxVLRnmw0lKjRZuenbFXIljz324z5jrXTzEhBfR92tllqvsXf7RmcbYSUvTjPNZj9X5xr7Qb0xnr-GLOT_l0hGHGDfoP9zvIF4fvnMg3-Pc5PeNte4_mmPyC-TL8DmzId0T9jFbivEq7ovFPZO5w5EGzmDnL4o7cD6T9cqpNppV3mF1leIu9E0W7-vmdzfGMfyK50fkc7zL40Hxm9x7koFd4ub7zvFlfQNn8I1jB_P-zLMDtDG71hp8Fm0baWD-4u2nDP3lrmqi1jtVx_S7IIaHaD5OX1NNRVm9kxPVmNXsXIP_y5FSK_4eDH8jhPfCb1xbZDz6fy8CsxE='}],'data':{'nb_cols':384,'nb_lines':[[{'file_type':'class','nb_lines':50},{'file_type':'class','nb_lines':50},{'file_type':'class','nb_lines':50},{'file_type':'class','nb_lines':50}]]},'only_emulators':false,'lock_type':100},'sign':260872,'license_key':'***'}",
+    "compile_emulators": true,
+    "compile_library": true,
+    "data": {
+        "nb_cols": 384,
+        "nb_lines": [
+            [
+                {
+                    "file_type": "class",
+                    "nb_lines": 50
+                },
+                {
+                    "file_type": "class",
+                    "nb_lines": 50
+                },
+                {
+                    "file_type": "class",
+                    "nb_lines": 50
+                },
+                {
+                    "file_type": "class",
+                    "nb_lines": 50
+                }
+            ]
+        ]
+    },
+    "gcc_version": "arm-none-eabi-gcc (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.1 20231009",
+    "learning_min_lines": null,
+    "lib_limited": false,
+    "library_id": "685040335dc907eeffc21e62",
+    "library_md5sum": "4e13288f8870abd286e41cd83f271dd6",
+    "mcu": "cortex-m3_st_stm32l1_nucleo-l152re",
+    "mcu_cpn": "NUCLEO-L152RE",
+    "mcu_display_name": "NUCLEO-L152RE - STMicroelectronics",
+    "mcu_family": "STM32L1 Series",
+    "mcu_group": "demo",
+    "mcu_type": "cortex-m3",
+    "mcu_vendor": "STMicroelectronics",
+    "memory_usage": {
+        "flash": 2357,
+        "ram": 1673
+    },
+    "optimization_info": {
+        "creation_date": "2025-06-16T15:43:23+00:00",
+        "max_flash": 512000,
+        "max_ram": 80000,
+        "optimization_global_id": "b1ca0ab9525f57bfd041e49fbfcbe033",
+        "progression": {
+            "cpu_info": {
+                "cpu_nb_cores": 16,
+                "cpu_nb_cores_for_optimization": 12
+            },
+            "elapsed_time": 1152,
+            "evals_done": 200000,
+            "optimization_progress": 1.0,
+            "state": "finished"
+        },
+        "version": {
+            "local_api": "2025.04.04.1",
+            "studio": "5.0.2"
+        }
+    },
+    "performance": {
+        "memory_usage": {
+            "estimated_flash": 18280,
+            "estimated_flash_knowledge": null,
+            "estimated_ram": 1681
+        },
+        "performance": {
+            "precision": 0.995,
+            "precision_confidence_interval": [
+                0.9204,
+                1.0
+            ],
+            "score": 0.9731
+        }
+    },
+    "request_type": "library",
+    "sensor": "acc",
+    "studio_info": {
+        "local_api": {
+            "platform": "win64",
+            "version": "2025.04.04.1"
+        },
+        "studio": "5.0.2",
+        "web_api": {
+            "env": "PROD",
+            "version": "v3"
+        }
+    },
+    "user_info": {
+        "company": "Isen",
+        "email": "putzangel6@gmail.com",
+        "first_name": "Angel",
+        "last_name": "Putz"
+    }
+}
