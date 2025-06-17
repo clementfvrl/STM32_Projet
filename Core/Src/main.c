@@ -70,14 +70,15 @@
 #ifndef NEAI_MODE
 #define NEAI_MODE                     1                       /* 0: Datalogger mode, 1: NEAI functions mode */
 #endif
-//#if (NEAI_MODE == 1)
-//#ifndef NEAI_LEARN_NB
-//#define NEAI_LEARN_NB               20                      /* Number of buffers to be learn by the NEAI library */
-//#endif
-//#endif
 /************************************************************ NEAI algorithm defines end ************************************************************/
-#define FALL_DETECTION_THRESHOLD_IMPACT      80    // Probabilité minimale pour "Impact"
-#define FALL_DETECTION_THRESHOLD_INCLINAISON 70    // Probabilité minimale pour "Inclinaison brusque"
+
+// DETECTION DE CHUTE - PARAMETRES
+#define FALL_DETECTION_THRESHOLD_IMPACT      95    // Probabilité minimale pour "Tomber"
+#define MIN_CONSECUTIVE_FALLS                2     // Besoin de 2 détections consécutives
+#define FALL_RECOVERY_THRESHOLD              60    // Si Tomber < 60%, reset compteur
+#define MAX_FALL_SEQUENCE_TIME_MS           3000   // 3 secondes max pour séquence de chute
+#define POST_FALL_DURATION_MS               10000  // 10 secondes post-chute
+#define DEBUG_FALL_DETECTION				0	   // Mode débug 0 pour désactivé, 1 pour activé
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -101,15 +102,24 @@ static float neai_output_buffer[CLASS_NUMBER] = {0.0};
 
 const char *id2class[CLASS_NUMBER + 1] = {
 		"unknown",
+		"Tomber",
 		"Pas_bouger",
 		"Marche",
-		"Inclinaison brusque",
-		"Impact",
 };
 
+// DETECTION DE CHUTE - VARIABLES
 uint8_t fall_detected = 0;
 uint32_t last_fall_time = 0;
 #define FALL_COOLDOWN_MS 5000  // 5 secondes entre détections
+static uint8_t consecutive_fall_count = 0;
+static uint32_t first_fall_time = 0;
+
+// Variables mode post-chute (déplacées ici depuis la fonction)
+static uint8_t post_fall_mode = 0;
+static uint32_t post_fall_start_time = 0;
+
+static uint32_t total_classifications = 0;
+static uint32_t false_positives_avoided = 0;
 
 stmdev_ctx_t dev_ctx;
 /* USER CODE END PV */
@@ -188,8 +198,8 @@ int main(void)
 		}
 
 		printf("SafeGuard - Système de détection de chute activé\r\n");
-		printf("Classes disponibles: %s, %s, %s, %s\r\n",
-				id2class[1], id2class[2], id2class[3], id2class[4]);
+		printf("Classes disponibles: %s, %s, %s\r\n",
+				id2class[1], id2class[2], id2class[3]);
 	}
 	/* USER CODE END 2 */
 
@@ -434,34 +444,125 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 /**
- * @brief  Vérifie si une chute a été détectée
+ * @brief  Vérifie si une chute a été détectée avec filtres anti-faux-positifs et anti-cascade
  * @retval None
  */
 static void check_fall_detection(void)
 {
-    uint32_t current_time = HAL_GetTick();
+	uint32_t current_time = HAL_GetTick();
 
-    // Éviter les détections multiples rapprochées
-    if (current_time - last_fall_time < FALL_COOLDOWN_MS) {
-        return;
-    }
+	// === FILTRE COOLDOWN GLOBAL ===
+	// Éviter les détections multiples rapprochées
+	if (current_time - last_fall_time < FALL_COOLDOWN_MS) {
+		return;
+	}
 
-    // Logique de détection de chute
-    float impact_prob = neai_output_buffer[4] * 100.0f;        // "Impact" = index 3 (4ème classe)
-    float inclinaison_prob = neai_output_buffer[3] * 100.0f;   // "Inclinaison brusque" = index 4 (5ème classe)
+	// === MODE POST-CHUTE ===
+	// Ignorer toute détection pendant 10s après une chute confirmée
+	if (post_fall_mode) {
+		if (current_time - post_fall_start_time > POST_FALL_DURATION_MS) {
+			post_fall_mode = 0;
+			printf("🟢 Fin mode post-chute, surveillance normale reprise\r\n");
+		} else {
+			printf("⏳ Mode post-chute actif (%lu/%d ms)\r\n",
+					current_time - post_fall_start_time, POST_FALL_DURATION_MS);
+			return;
+		}
+	}
 
-    // Détection basée sur Impact fort OU Inclinaison brusque forte
-    if (impact_prob > FALL_DETECTION_THRESHOLD_IMPACT ||
-        inclinaison_prob > FALL_DETECTION_THRESHOLD_INCLINAISON) {
+	float tomber_prob = neai_output_buffer[0] * 100.0f;
+	float pas_bouger_prob = neai_output_buffer[1] * 100.0f;
+	float marche_prob = neai_output_buffer[2] * 100.0f;
 
-        fall_detected = 1;
-        last_fall_time = current_time;
+#ifdef DEBUG_FALL_DETECTION
+	printf("DEBUG - Classe: %d (%s) | Tomber: %.1f%% | Pas_bouger: %.1f%% | Marche: %.1f%% | Count: %d\r\n",
+			neai_id_class, id2class[neai_id_class], tomber_prob, pas_bouger_prob, marche_prob, consecutive_fall_count);
+#endif
 
-        printf("\n⚠️  ALERTE CHUTE DÉTECTÉE! ⚠️\r\n");
-        printf("Impact: %.1f%%, Inclinaison: %.1f%%\r\n", impact_prob, inclinaison_prob);
+	// === FILTRE 1: SEUIL PLUS STRICT ===
+	if (neai_id_class == 1 && tomber_prob > FALL_DETECTION_THRESHOLD_IMPACT) {
 
-        trigger_fall_alert();
-    }
+		// Première détection de chute potentielle
+		if (consecutive_fall_count == 0) {
+			first_fall_time = current_time;
+		}
+
+		consecutive_fall_count++;
+		printf("🟡 Chute potentielle %d/%d (%.1f%% > %.1f%%)\r\n",
+				consecutive_fall_count, MIN_CONSECUTIVE_FALLS, tomber_prob, (float)FALL_DETECTION_THRESHOLD_IMPACT);
+
+		// === FILTRE 2: DÉTECTIONS CONSÉCUTIVES ===
+		if (consecutive_fall_count >= MIN_CONSECUTIVE_FALLS) {
+
+			// === FILTRE 3: DURÉE RAISONNABLE DE SÉQUENCE ===
+			uint32_t sequence_duration = current_time - first_fall_time;
+			if (sequence_duration <= MAX_FALL_SEQUENCE_TIME_MS) {
+
+				// === VRAIE CHUTE DÉTECTÉE ===
+				fall_detected = 1;
+				last_fall_time = current_time;
+				consecutive_fall_count = 0; // Reset pour prochaine fois
+
+				printf("\n🚨 === ALERTE CHUTE CONFIRMÉE === 🚨\r\n");
+				printf("Probabilité finale: %.1f%%\r\n", tomber_prob);
+				printf("Détections consécutives: %d\r\n", MIN_CONSECUTIVE_FALLS);
+				printf("Durée séquence: %lu ms\r\n", sequence_duration);
+
+				trigger_fall_alert();
+
+				// === ACTIVATION MODE POST-CHUTE ===
+				post_fall_mode = 1;
+				post_fall_start_time = current_time;
+				printf("⏳ Mode post-chute activé pour %d secondes\r\n", POST_FALL_DURATION_MS/1000);
+
+				return; // Sortir immédiatement pour éviter cascade
+
+			} else {
+				// Séquence trop longue = probablement faux positif
+				printf("❌ Séquence trop longue (%lu ms), reset\r\n", sequence_duration);
+				consecutive_fall_count = 0;
+			}
+		}
+	}
+	// === RESET DU COMPTEUR ===
+	else if (neai_id_class == 1 && tomber_prob < FALL_RECOVERY_THRESHOLD) {
+		// Tomber détecté mais confiance trop faible = reset
+		if (consecutive_fall_count > 0) {
+			printf("🔄 Reset compteur chute (%.1f%% < %.1f%%)\r\n", tomber_prob, (float)FALL_RECOVERY_THRESHOLD);
+			false_positives_avoided++;
+		}
+		consecutive_fall_count = 0;
+	}
+	else if (neai_id_class != 1) {
+		// Autre classe détectée = reset total
+		if (consecutive_fall_count > 0) {
+			printf("🔄 Reset compteur chute (classe: %s)\r\n", id2class[neai_id_class]);
+			false_positives_avoided++;
+		}
+		consecutive_fall_count = 0;
+
+		// Affichage status normal (seulement si pas en mode post-chute)
+		switch(neai_id_class) {
+		case 2: // Pas bouger
+			printf("🟢 Statut: Immobile (%.1f%%)\r\n", pas_bouger_prob);
+			break;
+		case 3: // Marche
+			printf("🔵 Statut: En mouvement/Marche (%.1f%%)\r\n", marche_prob);
+			break;
+		default:
+			printf("❓ Classe inconnue: %d\r\n", neai_id_class);
+			break;
+		}
+	}
+
+	// === TIMEOUT DE SÉQUENCE ===
+	if (consecutive_fall_count > 0 && (current_time - first_fall_time) > MAX_FALL_SEQUENCE_TIME_MS) {
+		printf("⏰ Timeout séquence chute, reset\r\n");
+		false_positives_avoided++;
+		consecutive_fall_count = 0;
+	}
+
+	total_classifications++;
 }
 
 /**
@@ -470,21 +571,21 @@ static void check_fall_detection(void)
  */
 static void trigger_fall_alert(void)
 {
-    // Allumer la LED d'alerte
-    HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+	// Allumer la LED d'alerte
+	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
 
-    // TODO: Ajouter ici:
-    // - Activation buzzer/sirène
-    // - Envoi SMS/notification
-    // - Transmission radio/LoRa/WiFi
-    // - Logs dans mémoire
+	// TODO: Ajouter ici:
+	// - Activation buzzer/sirène
+	// - Envoi SMS/notification
+	// - Transmission radio/LoRa/WiFi
+	// - Logs dans mémoire
 
-    printf("🚨 Procédures d'urgence activées!\r\n");
-    printf("Timestamp: %lu ms\r\n", HAL_GetTick());
+	printf("🚨 Procédures d'urgence activées!\r\n");
+	printf("Timestamp: %lu ms\r\n", HAL_GetTick());
 
-    // Simulation temporisation d'alerte (à remplacer par vraie logique)
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+	// Simulation temporisation d'alerte (à remplacer par vraie logique)
+	HAL_Delay(1000);
+	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 }
 
 /**
