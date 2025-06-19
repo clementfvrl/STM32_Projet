@@ -23,9 +23,13 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_i2c.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr_ex.h \
+ ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_spi.h \
+ ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h \
+ ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h \
- /home/cfavarel/Documents/School/ISEN/S6/STM32/Workspace/SafeGuard/Drivers/Sensors/lsm6dso-pid/lsm6dso_reg.h \
+ C:/Users/angel/Downloads/STM32_Projet-main/STM32_Projet-main/Drivers/display/max7219_Yncrea2.h \
+ C:/Users/angel/Downloads/STM32_Projet-main/STM32_Projet-main/Drivers/Sensors/lsm6dso-pid/lsm6dso_reg.h \
  ../Core/Inc/cycle_dwt.h ../Core/Inc/NanoEdgeAI.h ../Core/Inc/knowledge.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
@@ -52,9 +56,13 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_i2c.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr_ex.h:
+../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_spi.h:
+../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h:
+../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h:
-/home/cfavarel/Documents/School/ISEN/S6/STM32/Workspace/SafeGuard/Drivers/Sensors/lsm6dso-pid/lsm6dso_reg.h:
+C:/Users/angel/Downloads/STM32_Projet-main/STM32_Projet-main/Drivers/display/max7219_Yncrea2.h:
+C:/Users/angel/Downloads/STM32_Projet-main/STM32_Projet-main/Drivers/Sensors/lsm6dso-pid/lsm6dso_reg.h:
 ../Core/Inc/cycle_dwt.h:
 ../Core/Inc/NanoEdgeAI.h:
 ../Core/Inc/knowledge.h:

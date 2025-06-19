@@ -9,6 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include Drivers/display/subdir.mk
 -include Drivers/Sensors/lsm6dso-pid/subdir.mk
 -include Drivers/STM32L1xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
@@ -61,8 +62,8 @@ all: main-build
 main-build: SafeGuard.elf secondary-outputs
 
 # Tool invocations
-SafeGuard.elf SafeGuard.map: $(OBJS) $(USER_OBJS) /home/cfavarel/Documents/School/ISEN/S6/STM32/Workspace/SafeGuard/STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "SafeGuard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/cfavarel/Documents/School/ISEN/S6/STM32/Workspace/SafeGuard/STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SafeGuard.map" -Wl,--gc-sections -static -L../Core/Src --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+SafeGuard.elf SafeGuard.map: $(OBJS) $(USER_OBJS) C:\Users\angel\Downloads\STM32_Projet-main\STM32_Projet-main\STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "SafeGuard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\angel\Downloads\STM32_Projet-main\STM32_Projet-main\STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SafeGuard.map" -Wl,--gc-sections -static -L../Core/Src --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
