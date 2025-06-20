@@ -1,8 +1,8 @@
-# 📦 STM32_Projet - NUCLEO-L476RG / L152RE + IKS01A3 (LSM6DSO)
+# 📦 STM32_Projet - NUCLEO-L152RE + IKS01A3 (avec capteur LSM6DSO)
 
 ## 📋 Description
 
-Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LSM6DSO** (gyroscope). L'objectif est de récupérer des données de mouvement (accélérations/gyroscope) à des fins de traitement ou de transmission.
+Ce projet embarqué utilise une carte **NUCLEO-L152RE** avec le **shield IKS01A3**, intégrant notamment le capteur **LSM6DSO** (gyroscope). L'objectif est de récupérer des données de mouvement (accélérations/inclinaisons) à des fins de traitement ou de transmission.
 
 ---
 
@@ -10,10 +10,8 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
 
 | Composant         | Référence         | Rôle                       |
 |-------------------|-------------------|----------------------------|
-| Microcontrôleur   | NUCLEO-L476RG     | Carte STM32 principale     |
-| Microcontrôleur   | NUCLEO-L152RE     | Carte STM32 secondaire     |
+| Microcontrôleur   | NUCLEO-L152RE     | Carte STM32                |
 | Capteur           | IKS01A3           | Shield multi-capteurs      |
-| Accéléromètre     | LIS2DW12          | Accéléromètre 3 axes       |
 | Gyroscope         | LSM6DSO           | Gyroscope + Accéléromètre  |
 
 ---
@@ -22,6 +20,8 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
 
 - STM32CubeIDE `v1.x18.1`
 - HAL (STM32Cube HAL Drivers)
+- stm32ai-datalogger (NanoEdgeAI Studio)
+- Pilotes LSM6DSO
 
 ---
 
@@ -57,7 +57,7 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
   └── Src/            # Fichiers source C
   └── Inc/            # Fichiers d’en-tête
 /Drivers/
-  └── BSP/            # Drivers de la board
+  └── Sensors/            # Drivers du capteur
   └── STM32L4xx_HAL/  # HAL STM32
 ```
 
@@ -67,12 +67,12 @@ Ce projet embarqué utilise des cartes **STM32 NUCLEO-L476RG** et **NUCLEO-L152R
 
 * [x] Configuration I2C/SPI
 * [x] Lecture LIS2DW12
-* [ ] Intégration du gyroscope LSM6DSO
-* [ ] Ajout de traitement de données
-* [ ] Communication UART/BLE
+* [x] Intégration du gyroscope LSM6DSO
+* [x] Ajout de traitement de données
+* [x] Communication UART/BLE
 
 ---
 
 ## 👨‍💻 Auteurs
 
-Projet développé par FAVAREL, PUTZ et BOMPUIS dans le cadre du Projet STM32 de l'ISEN Méditerranée.
+Projet développé par BOMPUIS, FAVAREL et PUTZ dans le cadre du Projet STM32 de l'ISEN Méditerranée.
