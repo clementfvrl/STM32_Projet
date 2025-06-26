@@ -48,6 +48,10 @@ Ce projet embarqué utilise une carte **NUCLEO-L152RE** avec le **shield IKS01A3
    * Compiler avec `Project > Build`.
    * Flasher avec `Run > Debug`.
 
+5. **Ouvir un terminal série type PuTTY ou TeraTerm**
+   * Déterminer le port série via Device Manager
+   * Vitesse de communication : 115200 bauds
+
 ---
 
 ## 📁 Structure du projet
@@ -60,16 +64,6 @@ Ce projet embarqué utilise une carte **NUCLEO-L152RE** avec le **shield IKS01A3
   └── Sensors/            # Drivers du capteur
   └── STM32L4xx_HAL/  # HAL STM32
 ```
-
----
-
-## ✅ À faire
-
-* [x] Configuration I2C/SPI
-* [x] Lecture LIS2DW12
-* [x] Intégration du gyroscope LSM6DSO
-* [x] Ajout de traitement de données
-* [x] Communication UART/BLE
 
 ---
 
